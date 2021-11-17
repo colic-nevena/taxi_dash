@@ -17,6 +17,8 @@ interface DriverProps {
     email: Email;
     timeActive: number;
     status: NotEmptyString;
+    drivingLicense: NotEmptyString;
+    registrationCertificate: NotEmptyString;
 }
 
 export default class Driver extends Entity<DriverProps, string> {
@@ -44,4 +46,11 @@ export default class Driver extends Entity<DriverProps, string> {
         return this.props.timeActive;
     }
 
+    get drivingLicense(): NotEmptyString {
+        return this.props.drivingLicense;
+    }
+
+    get registrationCertificate(): NotEmptyString {
+        return this.props.registrationCertificate;
+    }
 }

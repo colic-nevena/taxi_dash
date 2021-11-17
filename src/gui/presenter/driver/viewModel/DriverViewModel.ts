@@ -1,4 +1,4 @@
-export type DriverDTO = {
+export type DriverViewModel = {
     id: string;
     firstName: string;
     lastName: string;
@@ -10,8 +10,4 @@ export type DriverDTO = {
     status: string;
     drivingLicense: string;
     registrationCertificate: string;
-}
-
-export default interface IDriversDataSource {
-    getDrivers(): Promise<DriverDTO[]>;
 }

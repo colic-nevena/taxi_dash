@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 700,
     },
     listItem: {
-      marginLeft: "0.25vw",
+      marginLeft: "0.1vw"
     },
     icon: {
       color: "#D3D3D3"
