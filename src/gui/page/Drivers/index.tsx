@@ -14,15 +14,13 @@ export default function DriversPage() {
   const navigate = useNavigate();
   const classes = useStyles();
 
-  const { driverList, loading, error } = useSelector(
-    (state: RootStore) => state.driverListReducer
-  );
+  const { driverList, loading, error } = useSelector((state: RootStore) => state.driverListReducer);
 
   useEffect(() => {
     dispatch(GetDrivers());
   }, [dispatch]);
 
-  const handleRedirect = (id: string) => navigate("id");
+  const handleRedirect = (id: string) => navigate(id);
 
   const driversView = (
     <Grid

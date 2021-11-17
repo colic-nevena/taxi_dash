@@ -5,7 +5,7 @@ const drawerWidth = 240;
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      display: "flex",
+      display: "flex"
     },
     menuButton: {
       color: "#818287",
@@ -26,6 +26,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     drawerOpen: {
       backgroundColor: "#363740",
       width: drawerWidth,
+      overflow: "hidden",
       transition: theme.transitions.create("width", {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
