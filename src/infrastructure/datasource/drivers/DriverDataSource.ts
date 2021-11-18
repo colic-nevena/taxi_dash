@@ -40,8 +40,8 @@ export default class DriverDataSource implements IDriversDataSource {
             city: "Nis",
             zipCode: "18000",
             street: "Vojvode Misica 105b",
-            timeActive: i,
-            status: i % 2 === 0 ? "active" : i % 3 === 0 ? "break" : "not-working",
+            timeActive: i + 1,
+            status: i % 2 === 0 ? "Active" : i % 3 === 0 ? "Break" : "Not-working",
             drivingLicense: "123abc456",
             registrationCertificate: "lorem ipsum"
         }

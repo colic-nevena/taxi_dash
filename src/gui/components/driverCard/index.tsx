@@ -34,9 +34,9 @@ export default function DriverCard(props: DriverCardProps) {
       <Typography
         variant="subtitle2"
         className={
-          driver.status === "active"
+          driver.status === "Active"
             ? classes.statusActive
-            : driver.status === "break"
+            : driver.status === "Break"
             ? classes.statusBreak
             : classes.statusNotWorking
         }
@@ -45,6 +45,22 @@ export default function DriverCard(props: DriverCardProps) {
       </Typography>
     </Grid>
   );
+
+  const labelView = (label: string, value: string) => (
+    <Grid item xs={12} className={classes.labelContainer}>
+      <Typography variant="body2" className={classes.label}>
+        {label}
+      </Typography>
+
+      <Typography variant="body2" className={classes.value}>
+        {value}
+      </Typography>
+    </Grid>
+  );
+
+  const timeActiveView = driver.status === "Active" 
+    ? labelView("Active for:", `${driver.timeActive}h`)  
+    : labelView("Was active for:", `${driver.timeActive}h`);
 
   const viewToRender = (
     <Card className={classes.root} onClick={handleRedirect}>
@@ -57,6 +73,9 @@ export default function DriverCard(props: DriverCardProps) {
         {titleView}
         {imageView}
         {statusView}
+        {timeActiveView}
+        {labelView("Driving license:", driver.drivingLicense)}
+        {labelView("Registration certificate:", driver.registrationCertificate)}
       </Grid>
     </Card>
   );

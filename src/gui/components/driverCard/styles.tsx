@@ -56,5 +56,17 @@ export const useStyles = makeStyles((theme) => ({
         fontFamily: "Open Sans",
         fontWeight: 700,
         color: "#EB5757",
+    },
+    labelContainer: {
+        display: "flex",
+        flexDirection: "row",
+        marginLeft: theme.spacing(1),
+        marginBottom: theme.spacing(0.25)
+    },
+    value: {
+        marginLeft: theme.spacing(1)
+    },
+    label: {
+        fontWeight: "bold"
     }
 }));
