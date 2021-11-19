@@ -1,12 +1,12 @@
-import NotEmptyString from "../../../domain/base/valueObject/NotEmptyString";
-import StringId from "../../../domain/base/valueObject/uniqueEntityID/StringId";
-import Address from "../../../domain/modules/Address";
-import Driver from "../../../domain/modules/driver/entity/Driver";
-import Email from "../../../domain/modules/Email";
-import Name from "../../../domain/modules/Name";
-import ZipCode from "../../../domain/modules/ZipCode";
-import { DriverDTO } from "../../datasource/drivers/IDriverDataSource";
-import IMapper from "../../IMapper";
+import NotEmptyString from "../../../../domain/base/valueObject/NotEmptyString";
+import StringId from "../../../../domain/base/valueObject/uniqueEntityID/StringId";
+import Address from "../../../../domain/modules/Address";
+import Driver from "../../../../domain/modules/driver/entity/Driver";
+import Email from "../../../../domain/modules/Email";
+import Name from "../../../../domain/modules/Name";
+import ZipCode from "../../../../domain/modules/ZipCode";
+import { DriverDTO } from "../../../datasource/drivers/IDriverDataSource";
+import IMapper from "../../../IMapper";
 
 export class DriverMapperError extends Error {
     constructor(message: string) {
