@@ -1,5 +1,5 @@
 import { IGetDriversOutput } from "../../../domain/modules/driver/usecase/GetDriversUseCase";
-import DriverList from "../../../domain/modules/driver/valueObject/DriversList";
+import DriverList from "../../../domain/modules/driver/valueObject/DriverList";
 import { GET_DRIVERS_SUCCESS } from "../../redux/driverList/DriverListActionTypes";
 import { IReduxDispatch } from "../IReduxDispatch";
 import ReduxPresenter from "../ReduxPresenter";

@@ -1,4 +1,4 @@
-import DriverList from "../../domain/modules/driver/valueObject/DriversList";
+import DriverList from "../../domain/modules/driver/valueObject/DriverList";
 import IDriversDataSource from "../datasource/drivers/IDriverDataSource";
 import IDriverMapperFactory from "./factory/IDriverMapperFactory";
 import IDriverRepository from "./IDriverRepository";

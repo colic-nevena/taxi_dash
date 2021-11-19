@@ -1,5 +1,5 @@
 import Driver from "../../../../domain/modules/driver/entity/Driver";
-import DriverList from "../../../../domain/modules/driver/valueObject/DriversList";
+import DriverList from "../../../../domain/modules/driver/valueObject/DriverList";
 import IMapper from "../../../../infrastructure/IMapper";
 import { DriverViewModel } from "../viewModel/DriverViewModel";
 

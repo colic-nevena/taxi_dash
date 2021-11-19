@@ -1,5 +1,5 @@
 import IGetDriversGateway from "../gateway/IGetDriversGateway";
-import DriverList from "../valueObject/DriversList";
+import DriverList from "../valueObject/DriverList";
 
 export class GetDriversInteractorError extends Error {
     constructor(message: string) {

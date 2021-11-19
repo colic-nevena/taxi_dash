@@ -1,4 +1,4 @@
-import DriverList from "../valueObject/DriversList";
+import DriverList from "../valueObject/DriverList";
 
 export default interface IGetDriversGateway {
     getDrivers(): Promise<DriverList>;
