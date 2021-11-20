@@ -6,7 +6,7 @@ import IDriverRepository from "../infrastructure/repository/driverRepository/IDr
 import IVehicleRepository from "../infrastructure/repository/vehicleRepository/IVehicleRepository";
 import VehicleRepository from "../infrastructure/repository/vehicleRepository/VehicleRepository";
 import VehicleDataSource from "../infrastructure/datasource/vehicles/VehicleDataSource";
-import VehicleMapperFactory from "../infrastructure/repository/vehicleRepository/VehicleMapperFactory";
+import VehicleMapperFactory from "../infrastructure/repository/vehicleRepository/factory/VehicleMapperFactory";
 
 export default class RepositoryFactory {
     constructor(private nwc: NetworkController) { }
