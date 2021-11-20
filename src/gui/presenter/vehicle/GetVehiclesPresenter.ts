@@ -1,5 +1,5 @@
 import { IGetVehiclesOutput } from "../../../domain/modules/vehicle/usecase/GetVehiclesUseCase";
-import VehiclesList from "../../../domain/modules/vehicle/valueObject/VehiclesList";
+import VehicleList from "../../../domain/modules/vehicle/valueObject/VehicleList";
 import { GET_VEHICLES_SUCCESS } from "../../redux/vehicleList/VehicleListActionTypes";
 import { IReduxDispatch } from "../IReduxDispatch";
 import ReduxPresenter from "../ReduxPresenter";
@@ -11,7 +11,7 @@ export default class GetVehiclesPresenter extends ReduxPresenter implements IGet
         super(dispatch, new VehicleErrors().processor);
     }
 
-    displaySuccessResponse = (vehiclesList: VehiclesList): void => {
+    displaySuccessResponse = (vehiclesList: VehicleList): void => {
         const vehicleViewModelList = this.vehiclePresentation.presentVehicles(vehiclesList);
 
         this.dispatch({

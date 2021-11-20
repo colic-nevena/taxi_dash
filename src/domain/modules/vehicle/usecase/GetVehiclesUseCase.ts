@@ -1,5 +1,5 @@
 import IGetVehiclesGateway from "../gateway/IGetVehiclesGateway";
-import VehiclesList from "../valueObject/VehiclesList";
+import VehicleList from "../valueObject/VehicleList";
 
 export class GetVehiclesInteractorError extends Error {
     constructor(message: string) {
@@ -12,7 +12,7 @@ export interface IGetVehiclesInput {
 }
 
 export interface IGetVehiclesOutput {
-    displaySuccessResponse(vehicleList: VehiclesList): void;
+    displaySuccessResponse(vehicleList: VehicleList): void;
     displayErrorResponse(error: Error): void;
 }
 

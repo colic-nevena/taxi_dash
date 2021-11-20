@@ -1,4 +1,4 @@
-import VehicleList from "../../../domain/modules/vehicle/valueObject/VehiclesList";
+import VehicleList from "../../../domain/modules/vehicle/valueObject/VehicleList";
 import IVehicleDataSource from "../../datasource/vehicles/IVehicleDataSource";
 import IVehicleRepository from "./IVehicleRepository";
 import IVehicleMapperFactory from "./factory/IVehicleMapperFactory";

@@ -1,12 +1,12 @@
 import Vehicle from "../../../../domain/modules/vehicle/entity/Vehicle";
-import VehiclesList from "../../../../domain/modules/vehicle/valueObject/VehiclesList";
+import VehicleList from "../../../../domain/modules/vehicle/valueObject/VehicleList";
 import IMapper from "../../../../infrastructure/IMapper";
 import { VehicleViewModel } from "../viewModel/VehicleViewModel";
 
 export default class VehiclePresentation implements IMapper<Vehicle, VehicleViewModel> {
-    presentVehicles(VehiclesList: VehiclesList) {
+    presentVehicles(VehicleList: VehicleList) {
         const result: VehicleViewModel[] = [];
-        VehiclesList.vehicles.map(vehicle => result.push(this.map(vehicle)));
+        VehicleList.vehicles.map(vehicle => result.push(this.map(vehicle)));
         
         return result;
     }

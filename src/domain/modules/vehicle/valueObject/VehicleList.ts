@@ -22,7 +22,7 @@ export default class VehicleList extends ValueObject<VehicleListProps> {
 
     public static create(vehicles: Vehicle[]): VehicleList {
         if (!vehicles)
-            throw new VehicleListError('Vehicle list must not be undefined')        
+            throw new VehicleListError('Vehicle list must not be undefined')
         return new VehicleList({ vehicles })
     }
 
@@ -32,7 +32,7 @@ export default class VehicleList extends ValueObject<VehicleListProps> {
             return false
 
         const result = this.props.vehicles.filter(o1 => vo.props.vehicles.some(o2 => o1.id.isEqual(o2.id)));
-       
+
         return result.length === this.props.vehicles.length
     }
 }

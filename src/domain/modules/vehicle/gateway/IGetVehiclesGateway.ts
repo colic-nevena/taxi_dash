@@ -1,5 +1,5 @@
-import VehiclesList from "../valueObject/VehiclesList";
+import VehicleList from "../valueObject/VehicleList";
 
 export default interface IGetVehiclesGateway {
-    getVehicles(): Promise<VehiclesList>;
+    getVehicles(): Promise<VehicleList>;
 }

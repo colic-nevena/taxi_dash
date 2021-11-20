@@ -17,7 +17,7 @@ export default class GPS extends ValueObject<GPSProps> {
     }
 
     get longitude(): number {
-        return this.props.longitude;    
+        return this.props.longitude;
     }
 
     private constructor(props: GPSProps) {
@@ -29,6 +29,6 @@ export default class GPS extends ValueObject<GPSProps> {
     }
 
     public equals(vo: ValueObject<GPSProps>): boolean {
-        return vo.props.latitude===this.props.latitude && vo.props.longitude===this.props.longitude;
+        return vo.props.latitude === this.props.latitude && vo.props.longitude === this.props.longitude;
     }
 }
