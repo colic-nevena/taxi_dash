@@ -1,7 +1,6 @@
 import { ValueObject } from "../../../base/valueObject/ValueObject";
 import Vehicle from "../entity/Vehicle";
 
-
 export class VehicleListError extends Error {
     constructor(message: string) {
         super(`[VehicleList] Error - ${message}`)

@@ -11,7 +11,7 @@ import reportWebVitals from "./reportWebVitals";
 export const dependencyContainer = new DependencyContainer();
 (async () => {
   const data = await (await fetch("/settings.json")).json();
-  dependencyContainer.createDependency(data); //TODO 1
+  dependencyContainer.createDependency(data); 
 })()
   .then(() => {
     ReactDOM.render(
