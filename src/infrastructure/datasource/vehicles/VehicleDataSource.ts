@@ -39,7 +39,7 @@ export default class VehicleDataSource implements IVehicleDataSource {
             meter: i * 10 + i + 200,
             latitude: 43.3209,
             longitude: 21.8954,
-            fuel: 3,
+            fuel: i / 10,
             temperature: 20 + i,
             driverId: `taxidashdriver-id${i}`
         }
