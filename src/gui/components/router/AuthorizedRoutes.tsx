@@ -1,6 +1,7 @@
 import { Container } from "@material-ui/core";
 import { Route, Routes } from "react-router-dom";
-import DriversPage from "../../page/Drivers";
+import DriversPage from "../../page/drivers";
+import LiveData from "../../page/vehicles/sensorsLiveData";
 import AppBreadcrumbs from "../AppBreadcrumbs";
 import renderWithNavigation from "../HOC/renderWithNavigation";
 
@@ -10,6 +11,7 @@ function AuthorizedRoutes() {
       <Routes>
         <Route path="*" element={<AppBreadcrumbs />} />
         <Route path="drivers" element={<DriversPage />} />
+        <Route path="widgets" element={<LiveData />} />
       </Routes>
     </Container>
   );
