@@ -1,6 +1,6 @@
 import { Container } from "@material-ui/core";
 import { Route, Routes } from "react-router-dom";
-import DriversPage from "../../page/Drivers";
+import DriversPage from "../../page/drivers";
 import AppBreadcrumbs from "../AppBreadcrumbs";
 import renderWithNavigation from "../HOC/renderWithNavigation";
 
