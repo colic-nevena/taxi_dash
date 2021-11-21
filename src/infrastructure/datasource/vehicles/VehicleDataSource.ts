@@ -33,15 +33,15 @@ export default class VehicleDataSource implements IVehicleDataSource {
 
     getVehicleMock(i: number): VehicleDTO {
         return {
-            id: `Vehicle-id${i}`,
-            type: "Private",
-            licensePlate: `NI-${i}${i+1}${i+2}-AA`,
-            meter: i*10+1,
-            latitude: i*5,
-            longitude: i*5,
-            fuel: 23,
-            temperature: 20,
-            driverId: `${i}${i+1}${i+2}`
+            id: `vehicle-id${i}`,
+            type: i % 2 === 0 ? "private car" : "company car",
+            licensePlate: `NI-${i}${i + 1}${i + 2}-AA`,
+            meter: i * 10 + i + 200,
+            latitude: 43.3209,
+            longitude: 21.8954,
+            fuel: 3,
+            temperature: 20 + i,
+            driverId: `taxidashdriver-id${i}`
         }
     }
 }

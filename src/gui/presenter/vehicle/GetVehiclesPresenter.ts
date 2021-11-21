@@ -11,13 +11,13 @@ export default class GetVehiclesPresenter extends ReduxPresenter implements IGet
         super(dispatch, new VehicleErrors().processor);
     }
 
-    displaySuccessResponse = (vehiclesList: VehicleList): void => {
-        const vehicleViewModelList = this.vehiclePresentation.presentVehicles(vehiclesList);
+    displaySuccessResponse = (vehicleList: VehicleList): void => {
+        const vehicleViewModelList = this.vehiclePresentation.presentVehicles(vehicleList);
 
         this.dispatch({
             type: GET_VEHICLES_SUCCESS,
             payload: {
-                vehiclesList: vehicleViewModelList
+                vehicleList: vehicleViewModelList
             }
         })
     }
