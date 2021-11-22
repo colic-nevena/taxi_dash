@@ -76,7 +76,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       position: "sticky",
       zIndex: 1,
       top: 0,
-      marginBottom: theme.spacing(2),
       backgroundColor: "#F0F7F3",
       padding: theme.spacing(1, 0, 0),
     },

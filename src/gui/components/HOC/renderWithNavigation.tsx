@@ -80,11 +80,6 @@ export default function renderWithNavigation(
                 taxi <br />
                 management <br />
                 dashboard <br />
-                {/* <Typography component="label" variant="caption">
-                  <Link to="/app/versioning" className={classes.version}>
-                    v1.0.0
-                  </Link>
-                </Typography> */}
               </Typography>
 
               <IconButton
