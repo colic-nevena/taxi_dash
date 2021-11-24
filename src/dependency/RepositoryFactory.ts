@@ -10,6 +10,8 @@ import VehicleMapperFactory from "../infrastructure/repository/vehicleRepository
 import IBaseRepository from "../infrastructure/repository/baseRepository/IBaseRepository";
 import BaseRepository from "../infrastructure/repository/baseRepository/BaseRepository";
 import BaseDataSource from "../infrastructure/datasource/base/BaseDatasource";
+import IGetVehiclesGateway from "../domain/modules/vehicle/gateway/IGetVehiclesGateway";
+import GetVehiclesGateway from "../infrastructure/repository/vehicleRepository/gateway/GetVehiclesGateway";
 
 export default class RepositoryFactory {
     constructor(private nwc: NetworkController) { }
@@ -31,6 +33,19 @@ export default class RepositoryFactory {
     getConnectMqttRepository(): IBaseRepository {
         return new BaseRepository(
             new BaseDataSource()
+        )
+    }
+
+    getGetVehiclesGateway(): IGetVehiclesGateway {
+        return new GetVehiclesGateway(
+            new VehicleRepository(
+                new VehicleDataSource(this.nwc),
+                new VehicleMapperFactory()
+            ),
+            new DriverRepository(
+                new DriverDataSource(this.nwc),
+                new DriverMapperFactory()
+            )
         )
     }
 }

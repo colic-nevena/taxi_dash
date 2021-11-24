@@ -11,7 +11,7 @@ export default class GatewayFactory {
     }
 
     getGetVehiclesGateway(): IGetVehiclesGateway {
-        return this.repositoryFactory.getVehiclesRepository();
+        return this.repositoryFactory.getGetVehiclesGateway();
     }
 
     getConnectMqttGateway(): IConnectMqttGateway {

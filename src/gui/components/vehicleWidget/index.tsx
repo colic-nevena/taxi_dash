@@ -15,17 +15,15 @@ export interface VehicleWidgetProps {
 }
 
 export default function VehicleWidget(props: VehicleWidgetProps) {
-  const classes = useStyles();
   const { vehicle } = props;
-
   const { mqttClient } = useSelector((state: RootStore) => state.baseReducer);
 
   const [tabValue, setTabValue] = useState(0);
   const [fuelPayload, setFuelPayload] = useState(vehicle.fuel);
   const [meterPayload, setMeterPayload] = useState(vehicle.meter);
-  const [temperaturePayload, setTemperaturePayload] = useState(
-    vehicle.temperature
-  );
+  const [temperaturePayload, setTemperaturePayload] = useState(vehicle.temperature);
+
+  const classes = useStyles();
 
   useEffect(() => {
     if (mqttClient) {
@@ -80,7 +78,8 @@ export default function VehicleWidget(props: VehicleWidgetProps) {
     />
   );
 
-  const hoursView = (hours: number) => {
+  const hoursView = () => {
+    const hours = vehicle.driversHours;
     const percentage = (100 * hours) / 8;
 
     return (
@@ -150,7 +149,7 @@ export default function VehicleWidget(props: VehicleWidgetProps) {
       {tabValue === 0 && fuelView}
       {tabValue === 1 && meterView}
       {tabValue === 2 && temperatureView}
-      {tabValue === 3 && hoursView(4)}
+      {tabValue === 3 && hoursView()}
     </Card>
   );
 

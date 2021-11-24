@@ -1,3 +1,4 @@
+import DriverList from "../../driver/valueObject/DriverList";
 import IGetVehiclesGateway from "../gateway/IGetVehiclesGateway";
 import VehicleList from "../valueObject/VehicleList";
 
@@ -12,7 +13,7 @@ export interface IGetVehiclesInput {
 }
 
 export interface IGetVehiclesOutput {
-    displaySuccessResponse(vehicleList: VehicleList): void;
+    displaySuccessResponse(vehicleList: VehicleList, driverList: DriverList): void;
     displayErrorResponse(error: Error): void;
 }
 
@@ -32,6 +33,8 @@ export class GetVehiclesInteractor implements IGetVehiclesInput {
     }
 
     private async interact() {
-        this._output.displaySuccessResponse(await this._gateway.getVehicles());
+        const vehicles = await this._gateway.getVehicles();
+        const drivers = await this._gateway.getDrivers();
+        this._output.displaySuccessResponse(vehicles, drivers);
     }
 }

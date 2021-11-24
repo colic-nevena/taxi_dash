@@ -20,7 +20,7 @@ export default function Widgets() {
   useEffect(() => {
     dispatch(GetVehicles());
   }, [dispatch]);
-
+  
   const mainView = (
     <Grid
       container
