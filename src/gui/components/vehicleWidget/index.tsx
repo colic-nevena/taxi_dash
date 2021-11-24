@@ -7,23 +7,8 @@ import { useStyles } from "./styles";
 import "react-circular-progressbar/dist/styles.css";
 import vehicleImage from "../../../static/vehicle.jpg";
 import thermoIcon from "../../../static/celsius.png";
-
-const mqtt = require("mqtt");
-const connectionOptions = {
-  keepalive: 30,
-  protocolId: "MQTT",
-  protocolVersion: 4,
-  clean: true,
-  reconnectPeriod: 1000,
-  connectTimeout: 30 * 1000,
-  will: {
-    topic: "WillMsg",
-    payload: "Connection Closed abnormally..!",
-    qos: 0,
-    retain: false,
-  },
-  rejectUnauthorized: false,
-};
+import { useSelector } from "react-redux";
+import { RootStore } from "../../redux/Store";
 
 export interface VehicleWidgetProps {
   vehicle: VehicleViewModel;
@@ -33,8 +18,9 @@ export default function VehicleWidget(props: VehicleWidgetProps) {
   const classes = useStyles();
   const { vehicle } = props;
 
+  const { mqttClient } = useSelector((state: RootStore) => state.baseReducer);
+
   const [tabValue, setTabValue] = useState(0);
-  const [client, setClient] = useState<any>();
   const [fuelPayload, setFuelPayload] = useState(vehicle.fuel);
   const [meterPayload, setMeterPayload] = useState(vehicle.meter);
   const [temperaturePayload, setTemperaturePayload] = useState(
@@ -42,30 +28,28 @@ export default function VehicleWidget(props: VehicleWidgetProps) {
   );
 
   useEffect(() => {
-    setClient(mqtt.connect("ws://broker.emqx.io:8083/mqtt", connectionOptions));
-  }, []);
-
-  useEffect(() => {
-    if (client) {
-      client.on("connect", () => {
+    if (mqttClient) {
+      mqttClient.setMaxListeners(0);
+      
+      mqttClient.on("connect", () => {
         console.log("Mqtt Connected");
       });
 
-      client.on("error", (err: any) => {
+      mqttClient.on("error", (err: any) => {
         console.error("Connection error: ", err);
-        client.end();
+        mqttClient.end();
       });
 
-      client.on("reconnect", () => {
+      mqttClient.on("reconnect", () => {
         console.log("Mqtt error: Reconnecting");
       });
 
-      client.subscribe(`${vehicle.id}/fuel`);
-      client.subscribe(`${vehicle.id}/meter`);
-      client.subscribe(`${vehicle.id}/temperature`);
-      client.subscribe(`${vehicle.id}/driversHours`);
+      mqttClient.subscribe(`${vehicle.id}/fuel`);
+      mqttClient.subscribe(`${vehicle.id}/meter`);
+      mqttClient.subscribe(`${vehicle.id}/temperature`);
+      mqttClient.subscribe(`${vehicle.id}/driversHours`);
 
-      client.on("message", (topic: any, message: any) => {
+      mqttClient.on("message", (topic: any, message: any) => {
         const topicSensor = topic.slice(topic.indexOf("/") + 1);
         if (topicSensor === "fuel") setFuelPayload(Number(message));
         if (topicSensor === "meter") setMeterPayload(Number(message));
@@ -73,7 +57,7 @@ export default function VehicleWidget(props: VehicleWidgetProps) {
           setTemperaturePayload(Number(message));
       });
     }
-  }, [client, vehicle.id]);
+  }, [mqttClient, vehicle.id]);
 
   const handleTabChange = (e: any, tabNumber: number) => setTabValue(tabNumber);
 

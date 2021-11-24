@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import DriverCard from "../../components/driverCard";
 import ErrorMessage from "../../components/ErrorMessage";
 import Loader from "../../components/Loader";
+import { ConnectMqtt } from "../../redux/base/BaseActions";
 import { GetDrivers } from "../../redux/driverList/DriverListActions";
 import { RootStore } from "../../redux/Store";
 import { useStyles } from "./styles";
@@ -18,6 +19,7 @@ export default function DriversPage() {
 
   useEffect(() => {
     dispatch(GetDrivers());
+    dispatch(ConnectMqtt());
   }, [dispatch]);
 
   const handleRedirect = (id: string) => navigate(id);
