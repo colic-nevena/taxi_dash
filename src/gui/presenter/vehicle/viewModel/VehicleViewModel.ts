@@ -8,5 +8,5 @@ export type VehicleViewModel = {
     fuel: number;
     temperature: number;
     driverId: string;
-    driversHours: number;
+    driverTimeActive: number;
 }

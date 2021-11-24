@@ -22,6 +22,7 @@ export default function VehicleWidget(props: VehicleWidgetProps) {
   const [fuelPayload, setFuelPayload] = useState(vehicle.fuel);
   const [meterPayload, setMeterPayload] = useState(vehicle.meter);
   const [temperaturePayload, setTemperaturePayload] = useState(vehicle.temperature);
+  const [driverTimeActivePayload, setDriverTimeActivePayload] = useState(vehicle.driverTimeActive);
 
   const classes = useStyles();
 
@@ -45,14 +46,18 @@ export default function VehicleWidget(props: VehicleWidgetProps) {
       mqttClient.subscribe(`${vehicle.id}/fuel`);
       mqttClient.subscribe(`${vehicle.id}/meter`);
       mqttClient.subscribe(`${vehicle.id}/temperature`);
-      mqttClient.subscribe(`${vehicle.id}/driversHours`);
+      mqttClient.subscribe(`${vehicle.id}/driverTimeActive`);
 
       mqttClient.on("message", (topic: any, message: any) => {
-        const topicSensor = topic.slice(topic.indexOf("/") + 1);
-        if (topicSensor === "fuel") setFuelPayload(Number(message));
-        if (topicSensor === "meter") setMeterPayload(Number(message));
-        if (topicSensor === "temperature")
-          setTemperaturePayload(Number(message));
+        const topicId = topic.slice(0, topic.indexOf("/"));
+
+        if (topicId === vehicle.id) {
+          const topicSensor = topic.slice(topic.indexOf("/") + 1);
+          if (topicSensor === "fuel") setFuelPayload(Number(message));
+          if (topicSensor === "meter") setMeterPayload(Number(message));
+          if (topicSensor === "temperature") setTemperaturePayload(Number(message));
+          if (topicSensor === "driverTimeActive") setDriverTimeActivePayload(Number(message));
+        }
       });
     }
   }, [mqttClient, vehicle.id]);
@@ -79,7 +84,7 @@ export default function VehicleWidget(props: VehicleWidgetProps) {
   );
 
   const hoursView = () => {
-    const hours = vehicle.driversHours;
+    const hours = driverTimeActivePayload;
     const percentage = (100 * hours) / 8;
 
     return (

@@ -16,7 +16,7 @@ export default class VehiclePresentation implements IJoiner<Vehicle, Driver, Veh
                 }
             })
         });
-        console.log(result)
+        
         return result;
     }
 
@@ -33,7 +33,7 @@ export default class VehiclePresentation implements IJoiner<Vehicle, Driver, Veh
             fuel: fuel,
             temperature: temperature,
             driverId: driverId.getId(),
-            driversHours: driver.timeActive
+            driverTimeActive: driver.timeActive
         }
     }
 }
