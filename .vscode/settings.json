@@ -4,7 +4,8 @@
     "eslint.validate": ["typescript"],
     "cSpell.words": [
       "appbar",
-      "emqx"
+      "emqx",
+      "Scriptjs"
     ]
   }
   
