@@ -15,23 +15,21 @@ export default function DriverPage() {
   const classes = useStyles();
   const location = useLocation();
 
-  const { 
-    id,
+  const {
+    // id,
     firstName,
-    lastName,
-    email,
-    city,
-    zipCode,
-    street,
-    timeActive,
-    status,
-    drivingLicense,
-    registrationCertificate,
+    // lastName,
+    // email,
+    // city,
+    // zipCode,
+    // street,
+    // timeActive,
+    // status,
+    // drivingLicense,
+    // registrationCertificate,
     loading,
-    error
+    error,
   } = useSelector((state: RootStore) => state.driverReducer);
-
-
 
   useEffect(() => {
     const routeParts = location.pathname.split("/");
@@ -41,9 +39,7 @@ export default function DriverPage() {
 
   // const handleRedirect = (id: string) => navigate(id);
 
-  const driversView = (
-      <>{console.log(firstName)}</>
-  );
+  const driversView = <>{console.log(firstName)}</>;
 
   const viewToRender = (
     <Container disableGutters={true} maxWidth={false} className={classes.root}>
