@@ -10,6 +10,16 @@ export class DriverDataSourceError extends Error {
 export default class DriverDataSource implements IDriversDataSource {
     constructor(private nwc: NetworkController) { }
 
+    async getDriverById(id : string): Promise<DriverDTO>{
+        try {
+            const drivers = this.getDriversMock();
+            const driver = drivers.filter(d => d.id === id);
+            return driver[0];
+        } catch (err: any) {
+            throw new DriverDataSourceError(`[getDriverById] - ${err.message}`);
+        }
+    }
+
     async getDrivers(): Promise<DriverDTO[]> {
         try {
             // const drivers: any = await this.nwc.request({
@@ -46,4 +56,5 @@ export default class DriverDataSource implements IDriversDataSource {
             registrationCertificate: `lorem ipsum ${i}${i+1}${i+2}`
         }
     }
+
 }

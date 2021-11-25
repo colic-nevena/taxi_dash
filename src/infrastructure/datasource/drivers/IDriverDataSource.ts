@@ -14,4 +14,5 @@ export type DriverDTO = {
 
 export default interface IDriversDataSource {
     getDrivers(): Promise<DriverDTO[]>;
+    getDriverById(id : string): Promise<DriverDTO>;
 }

@@ -15,4 +15,4 @@ export const GetDrivers = () => async (dispatch: Dispatch, getState: () => RootS
     const gateway = dependencyContainer.dependency.gatewayFactory.getGetDriversGateway();
     new GetDriversInteractor(new GetDriversPresenter(new ReduxDispatch(dispatch), new DriverPresentation()), gateway)
         .getDrivers();
-}
+}   
