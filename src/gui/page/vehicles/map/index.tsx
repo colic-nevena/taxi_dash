@@ -10,7 +10,7 @@ import { RootStore } from "../../../redux/Store";
 import { GetVehicles } from "../../../redux/vehicleList/VehicleListActions";
 import { useStyles } from "./styles";
 
-const googleMapURL = `https://maps.googleapis.com/maps/api/js?key=`;
+const googleMapURL = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`;
 
 export default function Map() {
   const { vehicleList, error, loading } = useSelector((state: RootStore) => state.vehicleListReducer);
