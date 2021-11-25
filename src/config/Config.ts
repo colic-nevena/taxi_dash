@@ -11,6 +11,7 @@ export type HttpData = {
 export type ConfigData = {
     env: string;
     http: HttpData;
+    googleMap: string;
 }
 
 export default class Config {
@@ -26,7 +27,8 @@ export default class Config {
                 env: Config.convertToString("NODE_ENV", env.REACT_APP_NODE_ENV),
                 http: {
                     baseUrl: Config.convertToString("WEB_ROOT", env.REACT_APP_BASE_URL)
-                }
+                },
+                googleMap: Config.convertToString("GOOGLE_MAPS_API_KEY", env.REACT_APP_GOOGLE_MAPS_API_KEY)
             }
         } catch (error: any) {
             throw new ConfigError(`[parseConfig] - ${error.message}`);
@@ -39,6 +41,10 @@ export default class Config {
 
     public getHttpConfig(): HttpData {
         return this._config.http;
+    }
+
+    public getGoogleMapsConfig(): string {
+        return this._config.googleMap;
     }
 
     public static convertToString(tag: string, value: any): string {
