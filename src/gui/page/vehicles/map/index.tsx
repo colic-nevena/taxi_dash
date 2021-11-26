@@ -13,9 +13,11 @@ import { useStyles } from "./styles";
 const googleMapURL = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`;
 
 export default function Map() {
-  const { vehicleList, error, loading } = useSelector((state: RootStore) => state.vehicleListReducer);
+  const { vehicleList, error, loading } = useSelector(
+    (state: RootStore) => state.vehicleListReducer
+  );
   const [selectedVehicles, setSelectedVehicles] = useState<VehicleViewModel[]>([]);
-  
+
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -23,11 +25,16 @@ export default function Map() {
     dispatch(GetVehicles());
   }, [dispatch]);
 
-  const handleChange = (event: any, value: VehicleViewModel[]) => setSelectedVehicles(value);
+  const handleChange = (event: any, value: VehicleViewModel[]) =>
+    setSelectedVehicles(value);
 
   const multiSelectView = (
     <Grid item xs={12} md={6} lg={4} xl={4} className={classes.multiSelect}>
-      <MultiSelect data={vehicleList} label={"licensePlate"} handleChange={handleChange} />
+      <MultiSelect
+        data={vehicleList}
+        label={"licensePlate"}
+        handleChange={handleChange}
+      />
     </Grid>
   );
 
@@ -37,11 +44,11 @@ export default function Map() {
   const googleMapView = (
     <Grid item xs={12} md={12} lg={12} className={classes.map}>
       <GPSMap
-        isMarkerShown
         googleMapURL={googleMapURL}
         loadingElement={maxHeightDiv}
         containerElement={containerDiv}
         mapElement={maxHeightDiv}
+        data={selectedVehicles}
       />
     </Grid>
   );

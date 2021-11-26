@@ -1,11 +1,7 @@
 {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true,
-    "eslint.validate": ["typescript"],
-    "cSpell.words": [
-      "appbar",
-      "emqx",
-      "Scriptjs"
-    ]
-  }
-  
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "eslint.validate": ["typescript"],
+  "cSpell.words": ["appbar", "emqx", "Scriptjs", "scrollwheel"],
+  "prettier.configPath": "./idea/.prettierrc.json"
+}
