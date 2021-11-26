@@ -4,10 +4,9 @@ import { GetDriverByIdInteractor } from "../../../domain/modules/driver/usecase/
 import GetDriversPresenter from "../../presenter/driver/GetDriverByIdPresenter";
 import DriverPresentation from "../../presenter/driver/presentation/DriverPresentation";
 import ReduxDispatch from "../../presenter/ReduxDispatch";
-import { RootStore } from "../Store";
 import { DRIVER_LOADING } from "./DriverActionTypes";
 
-export const GetDriverById = (id: string) => async (dispatch: Dispatch, getState: () => RootStore) => {
+export const GetDriverById = (id: string) => async (dispatch: Dispatch) => {
     dispatch({
         type: DRIVER_LOADING
     });

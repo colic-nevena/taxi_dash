@@ -96,7 +96,7 @@ export default function VehicleWidget(props: VehicleWidgetProps) {
             styles={buildStyles({
               pathColor: hours > 4 ? "#F04E36" : "#2CDEA8",
               textColor: hours > 4 ? "#F04E36" : "#2CDEA8",
-              textSize: 12,
+              textSize: 12
             })}
           />
         </div>
@@ -159,7 +159,7 @@ export default function VehicleWidget(props: VehicleWidgetProps) {
   );
 
   return (
-    <Grid item xs={12} sm={6} md={3} lg={3} key={vehicle.id}>
+    <Grid item xs={12} sm={6} md={6} lg={4} xl={3} key={vehicle.id}>
       {cardView}
     </Grid>
   );

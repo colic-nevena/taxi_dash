@@ -27,7 +27,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       marginBottom: theme.spacing(2),
     },
     circularBar: {
-      width: "10vw",
+      width: "10vw"
     },
     circularBarContainer: {
       marginTop: theme.spacing(1),

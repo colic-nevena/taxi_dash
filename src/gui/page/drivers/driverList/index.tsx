@@ -2,6 +2,7 @@ import { Container, Grid } from "@material-ui/core";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import { Outlet } from "react-router-dom";
 import DriverCard from "../../../components/driverCard";
 import ErrorMessage from "../../../components/ErrorMessage";
 import Loader from "../../../components/Loader";
@@ -10,7 +11,7 @@ import { GetDrivers } from "../../../redux/driverList/DriverListActions";
 import { RootStore } from "../../../redux/Store";
 import { useStyles } from "./styles";
 
-export default function DriversPage() {
+export default function DriversIndex() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const classes = useStyles();
@@ -35,7 +36,7 @@ export default function DriversPage() {
       spacing={3}
     >
       {driverList.map((driver) => (
-        <Grid item xs={12} sm={6} md={3} lg={3} key={driver.id}>
+        <Grid item xs={12} sm={6} md={4} lg={4} xl={3} key={driver.id}>
           <DriverCard
             key={driver.id}
             driver={driver}
@@ -47,7 +48,9 @@ export default function DriversPage() {
   );
 
   const viewToRender = (
-    <Container disableGutters={true} maxWidth={false} className={classes.root}>
+    <Container disableGutters={true} maxWidth={false} className={classes.root}>  
+      <Outlet />
+      
       {driversView}
     </Container>
   );

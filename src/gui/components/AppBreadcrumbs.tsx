@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Breadcrumbs } from "@material-ui/core";
-import { useLocation } from "react-router";
+import { useLocation, Outlet } from "react-router-dom";
 import BreadcrumbItem from "./BreadcrumbItem";
 
 function makeUrlFromPathList(paths: string[], endIndex: number) {
@@ -41,7 +41,7 @@ export default function AppBreadcrumbs() {
     setPaths(list.length > 1 ? list : []);
   }, [setPaths, pathname]);
 
-  return paths.length > 0 ? (
+  const breadcrumbsView = paths.length > 0 ? (
     <Breadcrumbs separator="›" aria-label="breadcrumb">
       {paths.map((pObject, index) => (
         <BreadcrumbItem
@@ -52,5 +52,10 @@ export default function AppBreadcrumbs() {
         />
       ))}
     </Breadcrumbs>
-  ) : null;
+  ) : null;  
+
+  return <>
+    {breadcrumbsView}    
+    <Outlet />
+  </>
 }

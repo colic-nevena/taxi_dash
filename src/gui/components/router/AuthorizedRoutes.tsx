@@ -1,7 +1,8 @@
 import { Container } from "@material-ui/core";
 import { Route, Routes } from "react-router-dom";
-import DriversPage from "../../page/drivers/driverList";
-import DriverPage from "../../page/drivers/driverForm";
+import Drivers from "../../page/drivers";
+import DriverProfile from "../../page/drivers/driverForm";
+import DriversIndex from "../../page/drivers/driverList";
 import Map from "../../page/vehicles/map";
 import Widgets from "../../page/vehicles/widgets";
 import AppBreadcrumbs from "../AppBreadcrumbs";
@@ -11,12 +12,19 @@ function AuthorizedRoutes() {
   return (
     <Container maxWidth={false} disableGutters={true}>
       <Routes>
-        <Route path="*" element={<AppBreadcrumbs />} />
-        <Route path="drivers" element={<DriversPage />}>
-          <Route path=":id" element={<DriverPage />} />
+
+        <Route element={<AppBreadcrumbs />} > 
+
+          <Route path="drivers" element={<Drivers />}>
+            <Route index element={<DriversIndex />} />
+            <Route path=":id" element={<DriverProfile />} />
+          </Route>
+          
+          <Route path="widgets" element={<Widgets />} />
+          <Route path="map" element={<Map />} />
+          
         </Route>
-        <Route path="widgets" element={<Widgets />} />
-        <Route path="map" element={<Map />} />
+
       </Routes>
     </Container>
   );
