@@ -25,8 +25,9 @@ export default function Map() {
     dispatch(GetVehicles());
   }, [dispatch]);
 
-  const handleChange = (event: any, value: VehicleViewModel[]) =>
+  const handleChange = (event: any, value: VehicleViewModel[]) => {
     setSelectedVehicles(value);
+  };
 
   const multiSelectView = (
     <Grid item xs={12} md={6} lg={4} xl={4} className={classes.multiSelect}>

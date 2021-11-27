@@ -8,8 +8,10 @@ export interface MapProps {
 
 export const GPSMap = withScriptjs(
   withGoogleMap((props: MapProps) => {
+    const { vehicles } = props;
+
     const bounds = new window.google.maps.LatLngBounds();
-    props.vehicles.forEach((vehicle) => {
+    vehicles.forEach((vehicle) => {
       if (vehicle.latitude !== 0 && vehicle.longitude !== 0) {
         const latLng = new window.google.maps.LatLng(vehicle.latitude, vehicle.longitude);
 
@@ -28,7 +30,7 @@ export const GPSMap = withScriptjs(
           gestureHandling: "cooperative"
         }}
       >
-        {props.vehicles.map((vehicle) => (
+        {vehicles.map((vehicle) => (
           <CustomMarker vehicle={vehicle} />
         ))}
       </GoogleMap>
