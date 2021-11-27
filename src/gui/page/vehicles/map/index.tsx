@@ -48,7 +48,7 @@ export default function Map() {
         loadingElement={maxHeightDiv}
         containerElement={containerDiv}
         mapElement={maxHeightDiv}
-        data={selectedVehicles}
+        vehicles={selectedVehicles}
       />
     </Grid>
   );

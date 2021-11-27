@@ -1,20 +1,15 @@
-import {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
-  Marker,
-  InfoWindow
-} from "react-google-maps";
-import markerImg from "../../../static/marker.png";
+import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps";
+import { VehicleViewModel } from "../../presenter/vehicle/viewModel/VehicleViewModel";
+import CustomMarker from "./CustomMarker";
 
 export interface MapProps {
-  data: any[];
+  vehicles: VehicleViewModel[];
 }
 
 export const GPSMap = withScriptjs(
   withGoogleMap((props: MapProps) => {
     const bounds = new window.google.maps.LatLngBounds();
-    props.data.forEach((vehicle) => {
+    props.vehicles.forEach((vehicle) => {
       if (vehicle.latitude !== 0 && vehicle.longitude !== 0) {
         const latLng = new window.google.maps.LatLng(vehicle.latitude, vehicle.longitude);
 
@@ -25,7 +20,7 @@ export const GPSMap = withScriptjs(
     return (
       <GoogleMap
         defaultZoom={9}
-        defaultCenter={{ lat: 43.3209, lng: 21.8954 }}
+        defaultCenter={{ lat: 44.8125, lng: 20.4612 }}
         defaultOptions={{
           scrollwheel: false
         }}
@@ -33,20 +28,9 @@ export const GPSMap = withScriptjs(
           gestureHandling: "cooperative"
         }}
       >
-        {props.data.map((vehicle, index) => {
-          return (
-            <Marker
-              key={index}
-              position={{ lat: vehicle.latitude, lng: vehicle.longitude }}
-              icon={markerImg}
-              
-            >
-              <InfoWindow>
-                <span>{vehicle.licensePlate}</span>
-              </InfoWindow>
-            </Marker>
-          );
-        })}
+        {props.vehicles.map((vehicle) => (
+          <CustomMarker vehicle={vehicle} />
+        ))}
       </GoogleMap>
     );
   })

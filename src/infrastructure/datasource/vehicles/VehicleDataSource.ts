@@ -36,8 +36,8 @@ export default class VehicleDataSource implements IVehicleDataSource {
       type: i % 2 === 0 ? "private car" : "company car",
       licensePlate: `NI-${i}${i + 1}${i + 2}-AA`,
       meter: i * 10 + i + 200,
-      latitude: 43.3209 + Math.random(),
-      longitude: 21.8954 + Math.random(),
+      latitude: 44.8125 - Math.random(),
+      longitude: 20.4612 + Math.random(),
       fuel: i / 10,
       temperature: 20 + i,
       driverId: `taxidashdriver-id${i}`
