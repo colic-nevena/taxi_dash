@@ -1,7 +1,7 @@
 import { Container } from "@material-ui/core";
 import { Route, Routes } from "react-router-dom";
 import Drivers from "../../page/drivers";
-import DriverProfile from "../../page/drivers/driverForm";
+import DriverProfile from "../../page/drivers/driverEditor";
 import DriversIndex from "../../page/drivers/driverList";
 import Map from "../../page/vehicles/map";
 import Widgets from "../../page/vehicles/widgets";
