@@ -33,7 +33,7 @@ export default function DriversIndex() {
       direction="row"
       justifyContent="flex-start"
       alignItems="flex-start"
-      spacing={3}
+      spacing={2}
     >
       {driverList.map((driver) => (
         <Grid item xs={12} sm={6} md={4} lg={4} xl={3} key={driver.id}>
