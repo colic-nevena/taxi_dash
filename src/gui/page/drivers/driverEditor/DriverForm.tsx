@@ -39,7 +39,7 @@ export default function DriverForm() {
   };
 
   const firstNameView = (
-    <Grid item xs={10} className={`${classes.textField} ${classes.topTextField}`}>
+    <Grid item xs={12} className={`${classes.textField} ${classes.topTextField}`}>
       <TextField
         name="firstName"
         label="First name"
@@ -51,7 +51,7 @@ export default function DriverForm() {
   );
 
   const lastNameView = (
-    <Grid item xs={6} className={classes.textField}>
+    <Grid item xs={12} className={classes.textField}>
       <TextField label="Last name" variant="outlined" defaultValue={lastName} />
     </Grid>
   );
