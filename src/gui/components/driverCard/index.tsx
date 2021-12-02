@@ -6,7 +6,7 @@ import { Card } from "@material-ui/core";
 
 interface DriverCardProps {
   driver: DriverViewModel;
-  handleRedirect: () => void;
+  handleRedirect?: () => void;
 }
 
 export default function DriverCard(props: DriverCardProps) {
@@ -22,10 +22,8 @@ export default function DriverCard(props: DriverCardProps) {
   );
 
   const imageView = (
-    <Grid item xs={12}>
-      <Grid item xs={12} className={classes.imageDiv}>
-        <img alt="driver" src={driverImage} className={classes.image} />
-      </Grid>
+    <Grid item xs={12} className={classes.imageDiv}>
+      <img alt="driver" src={driverImage} className={classes.image} />
     </Grid>
   );
 
@@ -58,18 +56,14 @@ export default function DriverCard(props: DriverCardProps) {
     </Grid>
   );
 
-  const timeActiveView = driver.status === "Active" 
-    ? labelView("Active for:", `${driver.timeActive}h`)  
-    : labelView("Was active for:", `${driver.timeActive}h`);
+  const timeActiveView =
+    driver.status === "Active"
+      ? labelView("Active for:", `${driver.timeActive}h`)
+      : labelView("Was active for:", `${driver.timeActive}h`);
 
   const viewToRender = (
     <Card className={classes.root} onClick={handleRedirect}>
-      <Grid
-        container
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-      >
+      <Grid container direction="row" justifyContent="center" alignItems="center">
         {titleView}
         {imageView}
         {statusView}

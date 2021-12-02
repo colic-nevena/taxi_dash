@@ -7,8 +7,12 @@ export const useStyles = makeStyles((theme) => ({
   },
   previewRoot: {
     borderRadius: "10px",
-    padding: theme.spacing(2, 0),
-    backgroundColor: "#ffffff",
-    minHeight: "100%"
+    padding: theme.spacing(2, 0)
+  },
+  textField: {
+    margin: theme.spacing(1)
+  },
+  topTextField: {
+    marginTop: theme.spacing(2.5)
   }
 }));

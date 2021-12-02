@@ -37,7 +37,10 @@ const defaultState: DriverState = {
   loading: false
 };
 
-const driverListReducer = (state: DriverState = defaultState, action: DriverActionTypes): DriverState => {
+const driverReducer = (
+  state: DriverState = defaultState,
+  action: DriverActionTypes
+): DriverState => {
   switch (action.type) {
     case DRIVER_LOADING:
       return { ...state, loading: true };
@@ -67,4 +70,4 @@ const driverListReducer = (state: DriverState = defaultState, action: DriverActi
   }
 };
 
-export default driverListReducer;
+export default driverReducer;

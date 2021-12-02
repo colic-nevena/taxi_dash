@@ -31,11 +31,7 @@ export default function Map() {
 
   const multiSelectView = (
     <Grid item xs={12} md={6} lg={4} xl={4} className={classes.multiSelect}>
-      <MultiSelect
-        data={vehicleList}
-        label={"licensePlate"}
-        handleChange={handleChange}
-      />
+      <MultiSelect data={vehicleList} label={"licensePlate"} handleChange={handleChange} />
     </Grid>
   );
 
