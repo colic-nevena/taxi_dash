@@ -38,9 +38,12 @@ export default function DriverForm() {
     dispatch(OnChangeInputs({ field, value }));
   };
 
+  // const textFieldView = ()
+
   const firstNameView = (
     <Grid item xs={10} className={`${classes.textField} ${classes.topTextField}`}>
       <TextField
+        fullWidth
         name="firstName"
         label="First name"
         variant="outlined"
