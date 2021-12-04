@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { GetDriverById, OnChangeInputs, UpdateDriver } from "../../../redux/driver/DriverActions";
 import { RootStore } from "../../../redux/Store";
 import ErrorMessage from "../../../components/ErrorMessage";
@@ -13,6 +13,7 @@ export default function DriverForm() {
   const params = useParams();
   const dispatch = useDispatch();
   const classes = useStyles();
+  const navigate = useNavigate();
 
   const [edited, setEdited] = useState(false);
 
@@ -77,7 +78,7 @@ export default function DriverForm() {
     </>
   );
 
-  const handleUpdate = (e: any) => {
+  const handleUpdate = () => {
     dispatch(
       UpdateDriver(
         id,
@@ -93,6 +94,8 @@ export default function DriverForm() {
         registrationCertificate
       )
     );
+
+    navigate("/app/drivers");
   };
 
   const buttonView = (
