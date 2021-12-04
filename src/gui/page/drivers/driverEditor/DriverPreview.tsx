@@ -4,12 +4,9 @@ import { RootStore } from "../../../redux/Store";
 import { DriverViewModel } from "../../../presenter/driver/viewModel/DriverViewModel";
 import ErrorMessage from "../../../components/ErrorMessage";
 import Loader from "../../../components/Loader";
-import { Button, Grid } from "@material-ui/core";
-import { useStyles } from "./styles";
+import { Grid } from "@material-ui/core";
 
 export default function DriverForm() {
-  const classes = useStyles();
-
   const {
     id,
     firstName,

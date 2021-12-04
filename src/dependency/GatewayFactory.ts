@@ -4,17 +4,17 @@ import IGetVehiclesGateway from "../domain/modules/vehicle/gateway/IGetVehiclesG
 import RepositoryFactory from "./RepositoryFactory";
 
 export default class GatewayFactory {
-    constructor(private repositoryFactory: RepositoryFactory) { }
+  constructor(private repositoryFactory: RepositoryFactory) {}
 
-    getGetDriversGateway(): IGetDriversGateway {
-        return this.repositoryFactory.getDriverRepository();
-    }
+  getGetDriversGateway(): IGetDriversGateway {
+    return this.repositoryFactory.getDriverRepository();
+  }
 
-    getGetVehiclesGateway(): IGetVehiclesGateway {
-        return this.repositoryFactory.getGetVehiclesGateway();
-    }
+  getGetVehiclesGateway(): IGetVehiclesGateway {
+    return this.repositoryFactory.getGetVehiclesGateway();
+  }
 
-    getConnectMqttGateway(): IConnectMqttGateway {
-        return this.repositoryFactory.getConnectMqttRepository();
-    }
+  getConnectMqttGateway(): IConnectMqttGateway {
+    return this.repositoryFactory.getConnectMqttRepository();
+  }
 }

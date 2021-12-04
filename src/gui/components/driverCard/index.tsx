@@ -70,6 +70,9 @@ export default function DriverCard(props: DriverCardProps) {
         {timeActiveView}
         {labelView("Driving license:", driver.drivingLicense)}
         {labelView("Registration certificate:", driver.registrationCertificate)}
+        {labelView("City, Zip code:", driver.city + ", " + driver.zipCode)}
+        {labelView("Street:", driver.street)}
+        {labelView("Email:", driver.email)}
       </Grid>
     </Card>
   );

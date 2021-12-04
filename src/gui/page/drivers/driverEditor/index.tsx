@@ -18,7 +18,7 @@ export default function DriverProfile() {
         <DriverForm />
       </Grid>
 
-      <Grid item xs={6} className={classes.previewRoot} justifyContent="center">
+      <Grid item xs={6} className={classes.previewRoot} container justifyContent="center">
         <DriverPreview />
       </Grid>
     </Grid>

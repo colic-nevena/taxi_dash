@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { GetDriverById, OnChangeInputs } from "../../../redux/driver/DriverActions";
+import { GetDriverById, OnChangeInputs, UpdateDriver } from "../../../redux/driver/DriverActions";
 import { RootStore } from "../../../redux/Store";
 import ErrorMessage from "../../../components/ErrorMessage";
 import Loader from "../../../components/Loader";
@@ -16,15 +16,15 @@ export default function DriverForm() {
   const [edited, setEdited] = useState(false);
 
   const {
-    // id,
+    id,
     firstName,
     lastName,
     email,
     city,
     zipCode,
     street,
-    // timeActive,
-    // status,
+    timeActive,
+    status,
     drivingLicense,
     registrationCertificate,
     loading,
@@ -36,10 +36,35 @@ export default function DriverForm() {
   }, [dispatch, params]);
 
   const handleOnChange = (field: string, value: string) => {
-    dispatch(OnChangeInputs({ field, value }));
+    if (field === "city, zipCode") {
+      let values: string[] = value.split(",");
+
+      field = "city";
+      value = values[0];
+      dispatch(OnChangeInputs({ field, value }));
+
+      field = "zipCode";
+      value = values[1];
+      dispatch(OnChangeInputs({ field, value }));
+    } else {
+      dispatch(OnChangeInputs({ field, value }));
+    }
+
+    if (
+      firstName.length > 0 &&
+      lastName.length > 0 &&
+      email.length > 0 &&
+      city.length > 0 &&
+      zipCode.length > 0 &&
+      street.length > 0 &&
+      drivingLicense.length > 0 &&
+      registrationCertificate.length > 0
+    ) {
+      setEdited(true);
+    }
   };
 
-  const textFieldView = (name: string, value: string) => (
+  const textFieldView = (name: string, label: string, defaultValue: string) => (
     <>
       <Grid item xs={10} lg={8}>
         <TextField
@@ -55,13 +80,31 @@ export default function DriverForm() {
             spellCheck: "false"
           }}
           autoFocus={name === "firstName"}
-          value={value}
+          defaultValue={defaultValue}
           onChange={(e: any) => handleOnChange(e.target.name, e.target.value)}
         />
       </Grid>
       <Grid item xs={12} />
     </>
   );
+
+  const handleUpdate = (e: any) => {
+    dispatch(
+      UpdateDriver(
+        id,
+        firstName,
+        lastName,
+        email,
+        city,
+        zipCode,
+        street,
+        timeActive,
+        status,
+        drivingLicense,
+        registrationCertificate
+      )
+    );
+  };
 
   const buttonView = (
     <>
@@ -70,7 +113,7 @@ export default function DriverForm() {
           size="small"
           disabled={!edited}
           className={classes.editButton}
-          // onClick={}
+          onClick={handleUpdate}
         >
           Save
         </Button>
@@ -79,7 +122,23 @@ export default function DriverForm() {
     </>
   );
 
-  const formView = <>{textFieldView("firstName", firstName)}</>;
+  const formView = (
+    <>
+      {textFieldView("firstName", "First name", firstName)}
+      {textFieldView("lastName", "Last name", lastName)}
+      {textFieldView("city, zipCode", "City, Zip code", city + ", " + zipCode)}
+      {/* {textFieldView("city", "City", cityzipCode)} */}
+      {/* {textFieldView("zipCode", "Zip code", zipCode)} */}
+      {textFieldView("street", "Street", street)}
+      {textFieldView("drivingLicence", "Driving licence", drivingLicense)}
+      {textFieldView(
+        "registrationCertificate",
+        "Regsitration certificate",
+        registrationCertificate
+      )}
+      {textFieldView("email", "Email", email)}
+    </>
+  );
 
   const viewToRender = (
     <Grid
