@@ -19,15 +19,12 @@ export default function DriverForm() {
   const [edited, setEdited] = useState(false);
 
   const {
-    id,
     firstName,
     lastName,
     email,
     city,
     zipCode,
     street,
-    timeActive,
-    status,
     drivingLicense,
     registrationCertificate,
     loading,
@@ -85,22 +82,7 @@ export default function DriverForm() {
   );
 
   const handleUpdate = () => {
-    dispatch(
-      UpdateDriver(
-        id,
-        firstName,
-        lastName,
-        email,
-        city,
-        zipCode,
-        street,
-        timeActive,
-        status,
-        drivingLicense,
-        registrationCertificate
-      )
-    );
-
+    dispatch(UpdateDriver());
     navigate("/app/drivers");
   };
 
@@ -109,7 +91,7 @@ export default function DriverForm() {
       open={openUpdateDialog}
       onClose={handleCloseUpdateDialog}
       title="Save changes?"
-      contentText="This will result in updating the driver."
+      contentText="This will result in updating the driver with all the changes you've made."
       actions={[
         {
           text: "Dismiss",
@@ -158,11 +140,7 @@ export default function DriverForm() {
       {textFieldView("city, zipCode", "City, Zip Code", city + ", " + zipCode)}
       {textFieldView("street", "Street", street)}
       {textFieldView("drivingLicense", "Driving License", drivingLicense)}
-      {textFieldView(
-        "registrationCertificate",
-        "Registration Certificate",
-        registrationCertificate
-      )}
+      {textFieldView("registrationCertificate", "Registration Certificate", registrationCertificate)}
       {textFieldView("email", "Email", email)}
 
       {updateDialogView}

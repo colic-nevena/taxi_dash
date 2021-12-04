@@ -5,6 +5,7 @@ import { UpdateDriverInteractor } from "../../../domain/modules/driver/usecase/U
 import GetDriversPresenter from "../../presenter/driver/GetDriverByIdPresenter";
 import DriverPresentation from "../../presenter/driver/presentation/DriverPresentation";
 import ReduxDispatch from "../../presenter/ReduxDispatch";
+import { RootStore } from "../Store";
 import { DriverInputsModel, DRIVER_CHANGE_INPUTS, DRIVER_LOADING } from "./DriverActionTypes";
 
 export const OnChangeInputs = (payload: DriverInputsModel) => (dispatch: Dispatch) => {
@@ -26,40 +27,40 @@ export const GetDriverById = (id: string) => async (dispatch: Dispatch) => {
   ).getDriverById(id);
 };
 
-export const UpdateDriver =
-  (
-    id: string,
-    firstName: string,
-    lastName: string,
-    email: string,
-    city: string,
-    zipCode: string,
-    street: string,
-    timeActive: number,
-    status: string,
-    drivingLicense: string,
-    registrationCertificate: string
-  ) =>
-  async (dispatch: Dispatch) => {
-    dispatch({
-      type: DRIVER_LOADING
-    });
+export const UpdateDriver = () => async (dispatch: Dispatch, getState: () => RootStore) => {
+  const {
+    id,
+    firstName,
+    lastName,
+    email,
+    city,
+    zipCode,
+    street,
+    timeActive,
+    status,
+    drivingLicense,
+    registrationCertificate
+  } = getState().driverReducer;
 
-    const gateway = dependencyContainer.dependency.gatewayFactory.getGetDriversGateway();
-    new UpdateDriverInteractor(
-      new GetDriversPresenter(new ReduxDispatch(dispatch), new DriverPresentation()),
-      gateway
-    ).updateDriver(
-      id,
-      firstName,
-      lastName,
-      email,
-      city,
-      zipCode,
-      street,
-      timeActive,
-      status,
-      drivingLicense,
-      registrationCertificate
-    );
-  };
+  dispatch({
+    type: DRIVER_LOADING
+  });
+
+  const gateway = dependencyContainer.dependency.gatewayFactory.getGetDriversGateway();
+  new UpdateDriverInteractor(
+    new GetDriversPresenter(new ReduxDispatch(dispatch), new DriverPresentation()),
+    gateway
+  ).updateDriver({
+    id,
+    firstName,
+    lastName,
+    email,
+    city,
+    zipCode,
+    street,
+    timeActive,
+    status,
+    drivingLicense,
+    registrationCertificate
+  });
+};

@@ -23,7 +23,7 @@ function makeBreadcrumbsObjects(pathname: string): MenuItemObject[] {
     .filter((p) => p.length > 0);
   return pathList.map((p, index) => ({
     title: p,
-    url: makeUrlFromPathList(pathList, index),
+    url: makeUrlFromPathList(pathList, index)
   }));
 }
 
@@ -41,21 +41,24 @@ export default function AppBreadcrumbs() {
     setPaths(list.length > 1 ? list : []);
   }, [setPaths, pathname]);
 
-  const breadcrumbsView = paths.length > 0 ? (
-    <Breadcrumbs separator="›" aria-label="breadcrumb">
-      {paths.map((pObject, index) => (
-        <BreadcrumbItem
-          key={index}
-          isLink={index !== paths.length - 1}
-          text={pObject.title}
-          url={pObject.url}
-        />
-      ))}
-    </Breadcrumbs>
-  ) : null;  
+  const breadcrumbsView =
+    paths.length > 0 ? (
+      <Breadcrumbs separator="›" aria-label="breadcrumb">
+        {paths.map((pObject, index) => (
+          <BreadcrumbItem
+            key={index}
+            isLink={index !== paths.length - 1}
+            text={pObject.title}
+            url={pObject.url}
+          />
+        ))}
+      </Breadcrumbs>
+    ) : null;
 
-  return <>
-    {breadcrumbsView}    
-    <Outlet />
-  </>
+  return (
+    <>
+      {breadcrumbsView}
+      <Outlet />
+    </>
+  );
 }

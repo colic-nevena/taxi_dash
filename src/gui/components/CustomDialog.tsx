@@ -17,10 +17,10 @@ export type DialogAction = {
 
 const useStyles = makeStyles((theme) => ({
   dialogPrimary: {
-    color: theme.palette.primary.dark,
-    backgroundColor: theme.palette.grey[100],
+    color: "white",
+    backgroundColor: theme.palette.primary.dark,
     "&:hover": {
-      backgroundColor: theme.palette.grey[100]
+      backgroundColor: theme.palette.primary.dark
     }
   },
   dialogSecondary: {

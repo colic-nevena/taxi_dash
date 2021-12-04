@@ -17,13 +17,10 @@ import { useStyles } from "./styles";
 const MENU_ITEMS = [
   { title: "DRIVERS", url: "/app/drivers" },
   { title: "WIDGETS", url: "/app/widgets" },
-  { title: "MAP", url: "/app/map" },
+  { title: "MAP", url: "/app/map" }
 ];
 
-function isSidebarMenuItemSelected(
-  pathname: string,
-  SidebarMenuItemUrl: string
-): boolean {
+function isSidebarMenuItemSelected(pathname: string, SidebarMenuItemUrl: string): boolean {
   return SidebarMenuItemUrl === "/home"
     ? pathname === SidebarMenuItemUrl
     : pathname.indexOf(SidebarMenuItemUrl) === 0;
@@ -31,14 +28,11 @@ function isSidebarMenuItemSelected(
 
 function getTitleForPage(pathname: string): string {
   const parts = pathname.split("/").filter((i) => i.length > 0);
-  if (parts.length > 1)
-    return `${parts[1][0].toUpperCase()}${parts[1].substr(1, parts[1].length)}`;
+  if (parts.length > 1) return `${parts[1][0].toUpperCase()}${parts[1].substr(1, parts[1].length)}`;
   return "Taxi Management Dashboard";
 }
 
-export default function renderWithNavigation(
-  WrappedComponent: React.ComponentType<any>
-) {
+export default function renderWithNavigation(WrappedComponent: React.ComponentType<any>) {
   return () => {
     const classes = useStyles();
     const theme = useTheme();
@@ -63,13 +57,13 @@ export default function renderWithNavigation(
         variant="permanent"
         className={clsx(classes.drawer, {
           [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
+          [classes.drawerClose]: !open
         })}
         classes={{
           paper: clsx({
             [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open,
-          }),
+            [classes.drawerClose]: !open
+          })
         }}
       >
         <div>
@@ -82,32 +76,20 @@ export default function renderWithNavigation(
                 dashboard <br />
               </Typography>
 
-              <IconButton
-                color="default"
-                onClick={handleDrawerClose}
-                className={classes.drawerCloseButton}
-              >
-                {theme.direction === "rtl" ? (
-                  <ChevronRightIcon />
-                ) : (
-                  <ChevronLeftIcon />
-                )}
+              <IconButton color="default" onClick={handleDrawerClose} className={classes.drawerCloseButton}>
+                {theme.direction === "rtl" ? <ChevronRightIcon /> : <ChevronLeftIcon />}
               </IconButton>
             </div>
           )}
         </div>
-        <Container
-          maxWidth={false}
-          disableGutters={true}
-          className={classes.list}
-        >
+        <Container maxWidth={false} disableGutters={true} className={classes.list}>
           <List>
             <IconButton
               aria-label="open drawer"
               onClick={handleDrawerOpen}
               edge="start"
               className={clsx(classes.menuButton, {
-                [classes.hide]: open,
+                [classes.hide]: open
               })}
             >
               <MenuIcon />
@@ -128,19 +110,9 @@ export default function renderWithNavigation(
 
     const renderAppBar = (
       <div className={classes.appBar}>
-        <Grid
-          container
-          direction="row"
-          justifyContent="space-between"
-          alignItems="center"
-        >
+        <Grid container direction="row" justifyContent="space-between" alignItems="center">
           <Grid item xs={6} md={6}>
-            <Typography
-              variant="h5"
-              className={classes.title}
-              style={{ cursor: "default" }}
-              noWrap
-            >
+            <Typography variant="h5" className={classes.title} style={{ cursor: "default" }} noWrap>
               {title}
             </Typography>
           </Grid>

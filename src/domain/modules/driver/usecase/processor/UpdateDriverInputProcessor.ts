@@ -1,4 +1,4 @@
-import Driver from "../../../../../domain/modules/driver/entity/Driver";
+import Driver from "../../entity/Driver";
 import { DriverViewModel } from "../../../../../gui/presenter/driver/viewModel/DriverViewModel";
 import NotEmptyString from "../../../../base/valueObject/NotEmptyString";
 import StringId from "../../../../base/valueObject/uniqueEntityID/StringId";
@@ -7,13 +7,13 @@ import Email from "../../../Email";
 import Name from "../../../Name";
 import ZipCode from "../../../ZipCode";
 
-export class DriverProcessorError extends Error {
+export class UpdateDriverInputProcessorError extends Error {
   constructor(message: string) {
     super(`[DriverProcessor] Error - ${message}`);
   }
 }
 
-export default class DriverProcessor {
+export default class UpdateDriverInputProcessor {
   static processData(input: DriverViewModel): Driver {
     const {
       id,
@@ -47,7 +47,7 @@ export default class DriverProcessor {
         StringId.create(id)
       );
     } catch (err: any) {
-      throw new DriverProcessorError(err.message);
+      throw new UpdateDriverInputProcessorError(err.message);
     }
   }
 }

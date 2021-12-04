@@ -19,10 +19,10 @@ export default class DriverRepository implements IDriverRepository {
 
   async updateDriver(driver: Driver): Promise<Driver> {
     try {
-      const driverDTO = this._driverMapperFactory.getDriverDataMapper().map(driver);
-      const updatedDriver = await this._dataSource.updateDriver(driverDTO);
-      const driverMap = this._driverMapperFactory.getDriverMapper().map(updatedDriver);
-      return driverMap;
+      const updatedDriver = await this._dataSource.updateDriver(
+        this._driverMapperFactory.getDriverDataMapper().map(driver)
+      );
+      return this._driverMapperFactory.getDriverMapper().map(updatedDriver);
     } catch (err: any) {
       throw new DriverRepositoryError(`[updateDriver] - ${err.message}`);
     }
@@ -43,8 +43,7 @@ export default class DriverRepository implements IDriverRepository {
   async getDriverById(id: StringId): Promise<Driver> {
     try {
       const driver = await this._dataSource.getDriverById(id.getId());
-      const driverMap = this._driverMapperFactory.getDriverMapper().map(driver);
-      return driverMap;
+      return this._driverMapperFactory.getDriverMapper().map(driver);
     } catch (err: any) {
       throw new DriverRepositoryError(`[getDriverById] - ${err.message}`);
     }
