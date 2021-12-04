@@ -8,6 +8,7 @@ import Loader from "../../../components/Loader";
 import { useStyles } from "./styles";
 import { Button, Grid, TextField } from "@material-ui/core";
 import driverImage from "../../../../static/dragAndDropPlaceholder.png";
+import CustomDialog from "../../../components/CustomDialog";
 
 export default function DriverForm() {
   const params = useParams();
@@ -33,9 +34,14 @@ export default function DriverForm() {
     error
   } = useSelector((state: RootStore) => state.driverReducer);
 
+  const [openUpdateDialog, setOpenUpdateDialog] = useState(false);
+
   useEffect(() => {
     if (params.id) dispatch(GetDriverById(params.id));
   }, [dispatch, params]);
+
+  const handleOpenUpdateDialog = () => setOpenUpdateDialog(true);
+  const handleCloseUpdateDialog = () => setOpenUpdateDialog(false);
 
   const handleOnChange = (field: string, value: string) => {
     if (field === "city, zipCode") {
@@ -98,6 +104,27 @@ export default function DriverForm() {
     navigate("/app/drivers");
   };
 
+  const updateDialogView = (
+    <CustomDialog
+      open={openUpdateDialog}
+      onClose={handleCloseUpdateDialog}
+      title="Save changes?"
+      contentText="This will result in updating the driver."
+      actions={[
+        {
+          text: "Dismiss",
+          click: handleCloseUpdateDialog,
+          primary: false
+        },
+        {
+          text: "Save",
+          click: handleUpdate,
+          primary: true
+        }
+      ]}
+    />
+  );
+
   const buttonView = (
     <>
       <Grid item xs={4} md={3} lg={2}>
@@ -105,7 +132,7 @@ export default function DriverForm() {
           size="medium"
           disabled={!edited}
           className={classes.editButton}
-          onClick={handleUpdate}
+          onClick={handleOpenUpdateDialog}
         >
           Save
         </Button>
@@ -137,6 +164,8 @@ export default function DriverForm() {
         registrationCertificate
       )}
       {textFieldView("email", "Email", email)}
+
+      {updateDialogView}
     </>
   );
 
