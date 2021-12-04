@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { GetDriverById, OnChangeInputs } from "../../../redux/driver/DriverActions";
@@ -6,13 +6,14 @@ import { RootStore } from "../../../redux/Store";
 import ErrorMessage from "../../../components/ErrorMessage";
 import Loader from "../../../components/Loader";
 import { useStyles } from "./styles";
-import { Grid } from "@material-ui/core";
-import TextField from "@mui/material/TextField";
+import { Button, Grid, TextField } from "@material-ui/core";
 
 export default function DriverForm() {
   const params = useParams();
   const dispatch = useDispatch();
   const classes = useStyles();
+
+  const [edited, setEdited] = useState(false);
 
   const {
     // id,
@@ -38,71 +39,60 @@ export default function DriverForm() {
     dispatch(OnChangeInputs({ field, value }));
   };
 
-  // const textFieldView = ()
-
-  const firstNameView = (
-    <Grid item xs={10} className={`${classes.textField} ${classes.topTextField}`}>
-      <TextField
-        fullWidth
-        name="firstName"
-        label="First name"
-        variant="outlined"
-        defaultValue={firstName}
-        onChange={(e: any) => handleOnChange(e.target.name, e.target.value)}
-      />
-    </Grid>
+  const textFieldView = (name: string, value: string) => (
+    <>
+      <Grid item xs={10} lg={8}>
+        <TextField
+          id={name}
+          variant="outlined"
+          label={name}
+          name={name}
+          fullWidth
+          classes={{
+            root: classes.txtField
+          }}
+          inputProps={{
+            spellCheck: "false"
+          }}
+          autoFocus={name === "firstName"}
+          value={value}
+          onChange={(e: any) => handleOnChange(e.target.name, e.target.value)}
+        />
+      </Grid>
+      <Grid item xs={12} />
+    </>
   );
 
-  const lastNameView = (
-    <Grid item xs={6} className={classes.textField}>
-      <TextField label="Last name" variant="outlined" defaultValue={lastName} />
-    </Grid>
+  const buttonView = (
+    <>
+      <Grid item xs={4} md={3} lg={2}>
+        <Button
+          size="small"
+          disabled={!edited}
+          className={classes.editButton}
+          // onClick={}
+        >
+          Save
+        </Button>
+      </Grid>
+      <Grid item xs={12} />
+    </>
   );
 
-  const emailView = (
-    <Grid item xs={6} className={classes.textField}>
-      <TextField label="Email" variant="outlined" defaultValue={email} />
-    </Grid>
-  );
-
-  const cityZipCodeView = (
-    <Grid item xs={6} className={classes.textField}>
-      <TextField label="City, Zip code " variant="outlined" defaultValue={city + ", " + zipCode} />
-    </Grid>
-  );
-
-  const streetView = (
-    <Grid item xs={6} className={classes.textField}>
-      <TextField label="Street" variant="outlined" defaultValue={street} />
-    </Grid>
-  );
-
-  const drivingLicenseView = (
-    <Grid item xs={6} className={classes.textField}>
-      <TextField label="Driving license" variant="outlined" defaultValue={drivingLicense} />
-    </Grid>
-  );
-
-  const registrationCertificateView = (
-    <Grid item xs={6} className={classes.textField}>
-      <TextField
-        label="Registration certificate"
-        variant="outlined"
-        defaultValue={registrationCertificate}
-      />
-    </Grid>
-  );
+  const formView = <>{textFieldView("firstName", firstName)}</>;
 
   const viewToRender = (
-    <>
-      {firstNameView}
-      {lastNameView}
-      {emailView}
-      {cityZipCodeView}
-      {drivingLicenseView}
-      {registrationCertificateView}
-      {streetView}
-    </>
+    <Grid
+      container
+      direction="row"
+      justifyContent="center"
+      alignItems="flex-start"
+      spacing={1}
+      className={classes.editorRoot}
+    >
+      {formView}
+      {buttonView}
+    </Grid>
   );
 
   if (error) return <ErrorMessage message={error} />;

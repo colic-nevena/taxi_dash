@@ -12,7 +12,22 @@ export const useStyles = makeStyles((theme) => ({
   textField: {
     margin: theme.spacing(1)
   },
-  topTextField: {
-    marginTop: theme.spacing(2.5)
+  txtField: {
+    borderRadius: "6px",
+    zIndex: 0,
+    backgroundColor: "#FFFFFF",
+    fontWeight: 700
+  },
+  editorRoot: {
+    paddingBottom: theme.spacing(2),
+    marginTop: theme.spacing(2)
+  },
+  editButton: {
+    borderRadius: "10px",
+    background: "#2CDEA8",
+    "&:hover": {
+      cursor: "pointer",
+      background: "#2CDEA8"
+    }
   }
 }));

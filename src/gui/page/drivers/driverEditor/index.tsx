@@ -14,15 +14,7 @@ export default function DriverProfile() {
       alignItems="stretch"
       className={classes.root}
     >
-      <Grid
-        item
-        xs={6}
-        container
-        justifyContent="center"
-        alignItems="center"
-        wrap="nowrap"
-        direction="column"
-      >
+      <Grid item xs={6}>
         <DriverForm />
       </Grid>
 
