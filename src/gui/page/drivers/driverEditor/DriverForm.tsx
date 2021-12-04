@@ -7,6 +7,7 @@ import ErrorMessage from "../../../components/ErrorMessage";
 import Loader from "../../../components/Loader";
 import { useStyles } from "./styles";
 import { Button, Grid, TextField } from "@material-ui/core";
+import driverImage from "../../../../static/dragAndDropPlaceholder.png";
 
 export default function DriverForm() {
   const params = useParams();
@@ -49,19 +50,7 @@ export default function DriverForm() {
     } else {
       dispatch(OnChangeInputs({ field, value }));
     }
-
-    if (
-      firstName.length > 0 &&
-      lastName.length > 0 &&
-      email.length > 0 &&
-      city.length > 0 &&
-      zipCode.length > 0 &&
-      street.length > 0 &&
-      drivingLicense.length > 0 &&
-      registrationCertificate.length > 0
-    ) {
-      setEdited(true);
-    }
+    setEdited(true);
   };
 
   const textFieldView = (name: string, label: string, defaultValue: string) => (
@@ -70,7 +59,7 @@ export default function DriverForm() {
         <TextField
           id={name}
           variant="outlined"
-          label={name}
+          label={label}
           name={name}
           fullWidth
           classes={{
@@ -110,7 +99,7 @@ export default function DriverForm() {
     <>
       <Grid item xs={4} md={3} lg={2}>
         <Button
-          size="small"
+          size="medium"
           disabled={!edited}
           className={classes.editButton}
           onClick={handleUpdate}
@@ -122,18 +111,26 @@ export default function DriverForm() {
     </>
   );
 
+  const imageView = (
+    <>
+      <Grid item xs={2} lg={2} />
+      <Grid item xs={10} lg={10} className={classes.imageDiv}>
+        <img alt="driver" src={driverImage} className={classes.image} />
+      </Grid>
+    </>
+  );
+
   const formView = (
     <>
-      {textFieldView("firstName", "First name", firstName)}
-      {textFieldView("lastName", "Last name", lastName)}
-      {textFieldView("city, zipCode", "City, Zip code", city + ", " + zipCode)}
-      {/* {textFieldView("city", "City", cityzipCode)} */}
-      {/* {textFieldView("zipCode", "Zip code", zipCode)} */}
+      {textFieldView("firstName", "First Name", firstName)}
+      {textFieldView("lastName", "Last Name", lastName)}
+      {imageView}
+      {textFieldView("city, zipCode", "City, Zip Code", city + ", " + zipCode)}
       {textFieldView("street", "Street", street)}
-      {textFieldView("drivingLicence", "Driving licence", drivingLicense)}
+      {textFieldView("drivingLicense", "Driving License", drivingLicense)}
       {textFieldView(
         "registrationCertificate",
-        "Regsitration certificate",
+        "Registration Certificate",
         registrationCertificate
       )}
       {textFieldView("email", "Email", email)}

@@ -1,8 +1,8 @@
 import { Grid, Typography } from "@material-ui/core";
 import { DriverViewModel } from "../../presenter/driver/viewModel/DriverViewModel";
 import { useStyles } from "./styles";
-import driverImage from "../../../static/taxi-driver.jpg";
 import { Card } from "@material-ui/core";
+import driverImage from "../../../static/taxi-driver.jpg";
 
 interface DriverCardProps {
   driver: DriverViewModel;
