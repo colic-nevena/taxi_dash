@@ -17,6 +17,14 @@ export default function DriverForm() {
   const navigate = useNavigate();
 
   const [edited, setEdited] = useState(false);
+  const [openUpdateDialog, setOpenUpdateDialog] = useState(false);
+
+  useEffect(() => {
+    if (params.id) dispatch(GetDriverById(params.id));
+  }, [dispatch, params]);
+
+  const handleOpenUpdateDialog = () => setOpenUpdateDialog(true);
+  const handleCloseUpdateDialog = () => setOpenUpdateDialog(false);
 
   const {
     firstName,
@@ -30,15 +38,6 @@ export default function DriverForm() {
     loading,
     error
   } = useSelector((state: RootStore) => state.driverReducer);
-
-  const [openUpdateDialog, setOpenUpdateDialog] = useState(false);
-
-  useEffect(() => {
-    if (params.id) dispatch(GetDriverById(params.id));
-  }, [dispatch, params]);
-
-  const handleOpenUpdateDialog = () => setOpenUpdateDialog(true);
-  const handleCloseUpdateDialog = () => setOpenUpdateDialog(false);
 
   const handleOnChange = (field: string, value: string) => {
     if (field === "city, zipCode") {
