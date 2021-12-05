@@ -18,7 +18,7 @@ export default function CustomMarker(props: MarkerProps) {
   const [longitude, setLongitude] = useState(vehicle.longitude);
   const [showInfo, setShowInfo] = useState(true);
 
-  const handleMarkerInfo = () => setShowInfo(!showInfo);
+  const handleShowMarkerInfo = () => setShowInfo(!showInfo);
 
   useEffect(() => {
     if (mqttClient) {
@@ -59,7 +59,7 @@ export default function CustomMarker(props: MarkerProps) {
       key={vehicle.licensePlate}
       position={{ lat: latitude, lng: longitude }}
       icon={markerImg}
-      onClick={handleMarkerInfo}
+      onClick={handleShowMarkerInfo}
     >
       {showInfo && (
         <InfoWindow>
