@@ -1,5 +1,5 @@
-import { makeStyles, Container } from '@material-ui/core';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import { makeStyles, Container } from "@material-ui/core";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles(() => ({
   main: {
@@ -15,16 +15,11 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function Loader() {
-
   const classes = useStyles();
 
   return (
-    <Container
-      disableGutters={true}
-      maxWidth={false}
-      className={classes.main}
-    >
+    <Container disableGutters={true} maxWidth={false} className={classes.main}>
       <CircularProgress />
     </Container>
-  )
+  );
 }
