@@ -13,7 +13,7 @@ export default function DriverCard(props: DriverCardProps) {
   const classes = useStyles();
 
   const { driver, handleRedirect } = props;
-  
+
   const titleView = (
     <Grid item xs={12}>
       <Typography variant="h6" className={classes.title}>

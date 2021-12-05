@@ -8,11 +8,13 @@ import { RootStore } from "../Store";
 import { GET_VEHICLES_LOADING } from "./VehicleListActionTypes";
 
 export const GetVehicles = () => async (dispatch: Dispatch, getState: () => RootStore) => {
-    dispatch({
-        type: GET_VEHICLES_LOADING
-    });
+  dispatch({
+    type: GET_VEHICLES_LOADING
+  });
 
-    const gateway = dependencyContainer.dependency.gatewayFactory.getGetVehiclesGateway();
-    new GetVehiclesInteractor(new GetVehiclesPresenter(new ReduxDispatch(dispatch), new VehiclePresentation()), gateway)
-        .getVehicles();
-}
+  const gateway = dependencyContainer.dependency.gatewayFactory.getGetVehiclesGateway();
+  new GetVehiclesInteractor(
+    new GetVehiclesPresenter(new ReduxDispatch(dispatch), new VehiclePresentation()),
+    gateway
+  ).getVehicles();
+};

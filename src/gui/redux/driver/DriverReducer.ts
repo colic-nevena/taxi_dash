@@ -37,10 +37,7 @@ const defaultState: DriverState = {
   loading: false
 };
 
-const driverReducer = (
-  state: DriverState = defaultState,
-  action: DriverActionTypes
-): DriverState => {
+const driverReducer = (state: DriverState = defaultState, action: DriverActionTypes): DriverState => {
   switch (action.type) {
     case DRIVER_LOADING:
       return { ...state, loading: true };
@@ -63,7 +60,7 @@ const driverReducer = (
       };
 
     case DRIVER_CHANGE_INPUTS:
-      return { ...state, [action.payload.field]: action.payload.value };
+      return { ...state, loading: false, [action.payload.field]: action.payload.value };
 
     default:
       return state;
