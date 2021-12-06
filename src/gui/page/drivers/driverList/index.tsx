@@ -11,7 +11,7 @@ import { GetDrivers } from "../../../redux/driverList/DriverListActions";
 import { RootStore } from "../../../redux/Store";
 import { useStyles } from "./styles";
 
-export default function DriversIndex() {
+export default function Drivers() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const classes = useStyles();
