@@ -26,6 +26,11 @@ export default function DriverForm() {
   const handleOpenUpdateDialog = () => setOpenUpdateDialog(true);
   const handleCloseUpdateDialog = () => setOpenUpdateDialog(false);
 
+  const handleUpdate = () => {
+    dispatch(UpdateDriver());
+    navigate("/app/drivers");
+  };
+
   const {
     firstName,
     lastName,
@@ -79,11 +84,6 @@ export default function DriverForm() {
       <Grid item xs={12} />
     </>
   );
-
-  const handleUpdate = () => {
-    dispatch(UpdateDriver());
-    navigate("/app/drivers");
-  };
 
   const updateDialogView = (
     <CustomDialog

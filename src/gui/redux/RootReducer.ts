@@ -8,7 +8,7 @@ const RootReducer = combineReducers({
   driverListReducer,
   vehicleListReducer,
   driverReducer,
-  baseReducer,
+  baseReducer
 });
 
 export default RootReducer;

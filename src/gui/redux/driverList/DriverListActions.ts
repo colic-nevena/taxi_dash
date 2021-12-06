@@ -15,3 +15,4 @@ export const GetDrivers = () => async (dispatch: Dispatch) => {
     new GetDriversInteractor(new GetDriversPresenter(new ReduxDispatch(dispatch), new DriverPresentation()), gateway)
         .getDrivers();
 }   
+
