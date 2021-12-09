@@ -1,16 +1,19 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import BasePage from "../../page/base";
 import AuthorizedRoutes from "./AuthorizedRoutes";
 
 function AppRouter() {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
-        <Route path="*" element={<BasePage />} />
+        <Route index element={<BasePage />} />
         <Route path="app/*" element={<AuthorizedRoutes />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 
 export default AppRouter;
+
+
+
