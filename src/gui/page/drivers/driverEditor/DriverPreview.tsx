@@ -5,7 +5,7 @@ import ErrorMessage from "../../../components/ErrorMessage";
 import Loader from "../../../components/Loader";
 import { Grid } from "@material-ui/core";
 
-export default function DriverForm() {
+export default function DriverPreview() {
   const driverState = useSelector((state: RootStore) => state.driverReducer);
   const { error, loading } = driverState;
 
